@@ -41,6 +41,21 @@ public class MessageServiceTest extends TestCase {
 		message.setAuthor("Aish");
 		messageService.updateMessage(message);
 	}
+	
+	public void testUpdateMessageInvalidId() {
+		Message message = messageService.getMessage(2L);
+		message.setId(0L);
+		Message updateMessage = messageService.updateMessage(message);
+		assertEquals(null, updateMessage);
+	}
+	
+	public void testUpdateMessageInvalidIdNeg() {
+		Message messageNeg = messageService.getMessage(2L);
+		messageNeg.setId(0L);
+		Message updateMessage = messageService.updateMessage(messageNeg);
+		assertEquals(null, updateMessage);
+
+	}
 
 	public void testRemoveMessage() {
 		messageService.removeMessage(3L);
